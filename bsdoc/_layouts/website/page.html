@@ -38,16 +38,20 @@
         <div class="bd-sidebar col-md-3 col-xs-12 push-md-9">
             <nav class="bd-links">
                 {% for item in summary.parts [0].articles %}
-                    <div class="bd-toc-item {% if item.path == file.path %}active{% endif %}">
-
-                        <a class="bd-toc-link" href="{{ item.path|resolveFile }}">{{ item.title }}</a>
+                    <div class="bd-toc-item active">
+                        {% if item.path and getPageByPath(item.path) %}
+                            <a class="bd-toc-link" href="{{ item.path|resolveFile }}">{{ item.title }}</a>
+                        {% endif %}
 
                         {% if item.articles %}
                             <ul class="nav bd-sidenav">
                                 {% for subitem in item.articles %}
-                                    <li {% if subitem.path == file.path %}class="bd-sidenav-active active"{% endif %}>
-                                        <a href="{{ subitem.path|resolveFile }}">{{ subitem.title }}{% if subitem.yaml_test %}{{ subitem.yaml_test }}{% endif %}</a>
-                                    </li>
+                                    {% if subitem.path and getPageByPath(subitem.path) %}
+                                        <li {% if subitem.path == file.path %}class="bd-sidenav-active active"{% endif %}>
+                                            <a href="{{ subitem.path|resolveFile }}">{{ subitem.title }}</a>
+                                        </li>
+                                        {% for e in getPageByPath(subitem.path) %} {{ e }} {% endfor %}
+                                    {% endif %}
                                 {% endfor %}
                             </ul>
                         {% endif %}
