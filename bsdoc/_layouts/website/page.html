@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
 
   <link rel="stylesheet" href="http://v4-alpha.getbootstrap.com/assets/css/docs.min.css" >
-  
+
     {% if config.includeMathJax %}
       <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     {% endif %}
@@ -38,8 +38,23 @@
         <div class="bd-sidebar col-md-3 col-xs-12 push-md-9">
             <nav class="bd-links">
                 {% for item in summary.parts [0].articles %}
-                    <div class="bd-toc-item {% if item.path == file.path %}active{% endif %}">
-                        <a class="bd-toc-link" href="{{ item.path|resolveFile }}">{{ item.path }}</a>
+                    <div class="bd-toc-item active">
+                        {% if item.path and getPageByPath(item.path) %}
+                            <a class="bd-toc-link" href="{{ item.path|resolveFile }}">{{ item.title }}</a>
+                        {% endif %}
+
+                        {% if item.articles %}
+                            <ul class="nav bd-sidenav">
+                                {% for subitem in item.articles %}
+                                    {% if subitem.path and getPageByPath(subitem.path) %}
+                                        <li {% if subitem.path == file.path %}class="bd-sidenav-active active"{% endif %}>
+                                            <a href="{{ subitem.path|resolveFile }}">{{ subitem.title }}</a>
+                                        </li>
+                                        {% for e in getPageByPath(subitem.path) %} {{ e }} {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </nav>
