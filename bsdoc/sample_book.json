@@ -1,0 +1,56 @@
+{
+    "author": "Author",
+    "description": "Description field.",
+    "includeHighlightJs": true,
+    "includeMathJax": false,
+    "plugins": ["regexplace"],
+    "pluginsConfig": {
+        "regexplace": {
+            "substitutes": [
+                {
+                    "comment": "Test",
+                    "pattern": "\\{\\$ omgwtf \\$\\}",
+                    "substitute": "* UMMMMMMMMMMMMMM What"
+                },
+                {
+                    "comment": "Bootstrap 4: Blockquote",
+                    "pattern": "\\<blockquote\\>",
+                    "substitute": "<blockquote class=\"blockquote\">"
+                },
+                {
+                    "comment": "Bootstrap 4: Blockquote Footer",
+                    "pattern": "--(.*?)--",
+                    "substitute": "<footer class=\"blockquote-footer\">$1</footer>"
+                },
+                {
+                    "comment": "Bootstrap 4: Paragraph Class",
+                    "pattern": "\\<p\\>%%p\\.([^%]+)%%",
+                    "substitute": "<p class=\"$1\">"
+                },
+                {
+                    "comment": "Bootstrap 4: Tables",
+                    "pattern": "\\<table\\>",
+                    "substitute": "<table class=\"table\">"
+                },
+                {
+                    "comment": "Bootstrap 4: Images",
+                    "pattern": "\\<img src=",
+                    "substitute": "<img class=\"img-fluid img-rounded\" src="
+                },
+                {
+                    "comment": "Bootstrap 4: Code",
+                    "pattern": "\\<pre\\>",
+                    "substitute": "<div class=\"card card-inverse card-block\"><pre a=\"m\">"
+                },
+                {
+                    "comment": "Bootstrap 4: Code End",
+                    "pattern": "\\<\\/pre\\>(?!</div>)",
+                    "substitute": "</pre></div>"
+                }
+            ]
+        }
+    },
+    "root": "book",
+    "subtitle": "Subtitle",
+    "title": "Title"
+}
