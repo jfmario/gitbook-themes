@@ -39,7 +39,7 @@
             <nav class="bd-links">
                 {% for item in summary.parts [0].articles %}
                     <div class="bd-toc-item {% if item.path == file.path %}active{% endif %}">
-                        <a class="bd-toc-link" href="{{ item.path|resolveFile }}">{{ item.title }}</a>
+                        <a class="bd-toc-link" href="{{ item.path|resolveFile }}">{{ item.path }}</a>
                     </div>
                 {% endfor %}
             </nav>
