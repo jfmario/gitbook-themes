@@ -42,40 +42,6 @@
                         <a class="bd-toc-link" href="{{ item.path|resolveFile }}">{{ item.title }}</a>
                     </div>
                 {% endfor %}
-                {% macro articles(_articles) %}
-                    {% for article in _articles %}
-                        <div class="bd-toc-item {% if article.path == file.path and not article.anchor %}active{% endif %}" data-level="{{ article.level }}" {% if article.path %}data-path="{{ articleurl }}"{% endif %}>
-                            {% if article.path and getPageByPath(article.path) %}
-                                <a class="bd-toc-link" href="{{ article.url }}!!!{{ article.anchor }}">
-                            {% elif article.url %}
-                                <a class="bd-toc-link" target="_blank" href="{{ article.url }}">
-                            {% else %}
-                                <a class="bd-toc-link">
-                            {% endif %}
-                                    {{ article.title }} ?????????????
-                                </a>
-            
-                        </div>
-                    {% endfor %}
-                {% endmacro %}
-                <!--
-                {% for item in config.toc %}
-                    {% if item.src == currentSlug %}
-                        <div class="bd-toc-item active">
-                    {% else %}
-                        <div class="bd-toc-item">
-                    {% endif %}
-
-                    <a class="bd-toc-link" href="/<$ item.src $>/">
-                        {% if item.index %}
-                            Chapter <$ item.index $>: <$ item.name $>
-                        {% else %}
-                            <$ item.name $>
-                        {% endif %}
-                    </a>
-                </div>
-                {% endfor %}
-                -->
             </nav>
         </div>
         <div class="bd-content col-md-9 col-xs-12 pull-md-3">
